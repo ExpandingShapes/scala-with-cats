@@ -7,6 +7,6 @@ object MyApp extends App {
   val cat = Cat("Bob", 4, "black")
 
   Printable.print(cat)
-  
+
   cat.print
 }
