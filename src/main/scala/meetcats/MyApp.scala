@@ -18,9 +18,13 @@ object MyApp extends App {
   val showIntV2 = 123.show
   val showStringV2 = "abc".show
   
-  //We can define an instance ofShowsimply by implementing the trait for a giventype:
-  //implicitvaldateShow: Show[Date] =newShow[Date] {defshow(date: Date): String =s"${date.getTime}mssincetheepoch."}
-  
-  //Cats also provides a couple of convenient methods to simplify theprocess. There are two construction methods on the companion object ofShowthat we can use to define instances for our own types:
-  implicit val dateShow: Show[Date] =Show.show(date => s"${date.getTime}ms since the epoch.")
+  /*
+  We can define an instance of Show simply by implementing the trait for a given type (Date):
+  implicit val dateShow: Show[Date] = newShow[Date] {
+    def show(date: Date): String = s"${date.getTime}ms since the epoch."
+  }
+  */
+
+  //Cats also provides a couple of convenient methods to simplify the process
+  implicit val dateShow: Show[Date] = Show.show(date => s"${date.getTime}ms since the epoch.")
 }
