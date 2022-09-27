@@ -1,5 +1,8 @@
 package introduction.exercises
 
+/**
+ * 1.3 Printable Library
+ */
 object PrintableInstances {
   implicit val stringFormatter: Printable[String] =
     new Printable[String] {

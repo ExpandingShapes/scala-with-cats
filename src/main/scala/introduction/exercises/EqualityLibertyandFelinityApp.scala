@@ -3,7 +3,10 @@ package introduction.exercises
 import cats.Eq
 import cats.syntax.eq._
 
-//1.5.5
+/**
+ * 1.5.5 Equality, Liberty, and Felinity
+ * Implement an instance of Eq for our running Cat example
+ */
 object EqualityLibertyandFelinityApp extends App {
   implicit val catEq: Eq[Cat] =
     Eq.instance[Cat]{(cat1, cat2) =>
