@@ -8,10 +8,27 @@ package monoidsandsemigroups.exercises
  * that the monoid laws hold. Use the following definitions as a starting point:
  */
 object TheTruthAboutMonoidsApp extends App {
-  val booleanMonoid = Monoid(
+  val booleanMonoidOr = Monoid(
     new Monoid[Boolean] {
-      override def combine(x: Boolean, y: Boolean): Boolean = ???
-      override def empty: Boolean = ???
+      override def combine(x: Boolean, y: Boolean): Boolean = x || y
+      override def empty: Boolean = false
     }
   )
+  val booleanMonoidAnd = Monoid(
+    new Monoid[Boolean] {
+      override def combine(x: Boolean, y: Boolean): Boolean = x && y
+      override def empty: Boolean = true
+    }
+  )
+
+
+  println("booleanMonoidOr associative law check:")
+  println(Monoid.associativeLaw(false, false, false)(booleanMonoidOr))
+  println(Monoid.associativeLaw(false, false, true)(booleanMonoidOr))
+  println(Monoid.associativeLaw(false, true, false)(booleanMonoidOr))
+  println(Monoid.associativeLaw(false, true, true)(booleanMonoidOr))
+  println(Monoid.associativeLaw(true, false, false)(booleanMonoidOr))
+  println(Monoid.associativeLaw(true, false, true)(booleanMonoidOr))
+  println(Monoid.associativeLaw(true, true, false)(booleanMonoidOr))
+  println(Monoid.associativeLaw(true, true, true)(booleanMonoidOr))
 }
