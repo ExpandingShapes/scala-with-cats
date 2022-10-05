@@ -12,4 +12,6 @@ object Monoid {
 
   def identityLaw[A](x: A)(implicit m: Monoid[A]): Boolean =
     (m.combine(x, m.empty) == x) && (m.combine(m.empty, x) == x)
+
+
 }

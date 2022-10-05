@@ -20,15 +20,30 @@ object TheTruthAboutMonoidsApp extends App {
       override def empty: Boolean = true
     }
   )
+  val booleanMonoidXor = Monoid(
+    new Monoid[Boolean] {
+      override def combine(x: Boolean, y: Boolean): Boolean = x ^ y
+      override def empty: Boolean = false
+    }
+  )
 
+  checkBooleanMonoidObeysLaws(booleanMonoidOr)
+  checkBooleanMonoidObeysLaws(booleanMonoidAnd)
+  checkBooleanMonoidObeysLaws(booleanMonoidXor)
 
-  println("booleanMonoidOr associative law check:")
-  println(Monoid.associativeLaw(false, false, false)(booleanMonoidOr))
-  println(Monoid.associativeLaw(false, false, true)(booleanMonoidOr))
-  println(Monoid.associativeLaw(false, true, false)(booleanMonoidOr))
-  println(Monoid.associativeLaw(false, true, true)(booleanMonoidOr))
-  println(Monoid.associativeLaw(true, false, false)(booleanMonoidOr))
-  println(Monoid.associativeLaw(true, false, true)(booleanMonoidOr))
-  println(Monoid.associativeLaw(true, true, false)(booleanMonoidOr))
-  println(Monoid.associativeLaw(true, true, true)(booleanMonoidOr))
+  private def checkBooleanMonoidObeysLaws(monoid: Monoid[Boolean]) = {
+    println("Associative law check:")
+    println(Monoid.associativeLaw(false, false, false)(monoid))
+    println(Monoid.associativeLaw(false, false, true)(monoid))
+    println(Monoid.associativeLaw(false, true, false)(monoid))
+    println(Monoid.associativeLaw(false, true, true)(monoid))
+    println(Monoid.associativeLaw(true, false, false)(monoid))
+    println(Monoid.associativeLaw(true, false, true)(monoid))
+    println(Monoid.associativeLaw(true, true, false)(monoid))
+    println(Monoid.associativeLaw(true, true, true)(monoid))
+
+    println("Identity law check:")
+    println(Monoid.identityLaw(false)(monoid))
+    println(Monoid.identityLaw(true)(monoid))
+  }
 }
